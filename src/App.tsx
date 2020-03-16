@@ -24,6 +24,9 @@ const useStyles = makeStyles((theme: Theme) =>
       paddingTop: 40,
       paddingBottom: 40,
     },
+    boldText: {
+      fontWeight: "bolder",
+    },
   }),
 );
 
@@ -118,9 +121,15 @@ function App() {
             <Table aria-label="simple table">
               <TableHead>
                 <TableRow>
-                  <TableCell>Description</TableCell>
-                  <TableCell align="right">Done</TableCell>
-                  <TableCell align="right">Delete</TableCell>
+                  <TableCell className={classes.boldText}>
+                    Description
+                  </TableCell>
+                  <TableCell className={classes.boldText} align="right">
+                    Done
+                  </TableCell>
+                  <TableCell className={classes.boldText} align="right">
+                    Delete
+                  </TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>{taskTableRows(false)}</TableBody>
@@ -142,9 +151,15 @@ function App() {
               <Table aria-label="simple table">
                 <TableHead>
                   <TableRow>
-                    <TableCell>Description</TableCell>
-                    <TableCell align="right">Done</TableCell>
-                    <TableCell align="right">Delete</TableCell>
+                    <TableCell className={classes.boldText}>
+                      Description
+                    </TableCell>
+                    <TableCell className={classes.boldText} align="right">
+                      Done
+                    </TableCell>
+                    <TableCell className={classes.boldText} align="right">
+                      Delete
+                    </TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>{taskTableRows(true)}</TableBody>

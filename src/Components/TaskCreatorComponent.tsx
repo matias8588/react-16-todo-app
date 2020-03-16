@@ -36,7 +36,7 @@ export const TaskCreatorComponent = (props: any) => {
     <div className={classes.root}>
       <TextField
         id="standard-basic"
-        label="Standard"
+        label="Add a task"
         type="text"
         value={newTaskName}
         onChange={updateNewTaskValue}

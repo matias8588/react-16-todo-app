@@ -31,14 +31,6 @@ export const TaskBannerComponent = (props: any) => {
     <div className={classes.root}>
       <AppBar position="static" color="primary">
         <Toolbar>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="menu"
-          >
-            <MenuIcon />
-          </IconButton>
           <Typography variant="h6">
             {props.userName}'s Tasks App (
             {props.taskItems.filter((t: any) => !t.done).length} tasks to do)
