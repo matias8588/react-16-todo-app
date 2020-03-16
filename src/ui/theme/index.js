@@ -1,6 +1,11 @@
-import { createMuiTheme } from "@material-ui/core/styles";
+import { createMuiTheme } from '@material-ui/core';
 
-const palette = { primary: { main: "#B71C1C" } };
-const themeName = "Thunderbird Razzmatazz Gaur";
+const theme = createMuiTheme({
+    palette: {
+        primary: { main: "#f44336" },
+        secondary: { main: '#607d8b' },
 
-export default createMuiTheme({ palette, themeName });
+    },
+});
+
+export default theme;

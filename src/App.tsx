@@ -11,7 +11,10 @@ import {
   TableCell,
   TableBody,
   Container,
+  createMuiTheme,
+  ThemeProvider,
 } from "@material-ui/core";
+import theme from "./ui/theme/index";
 
 function App() {
   const [userName, setUserName] = useState("Mati");
@@ -76,46 +79,48 @@ function App() {
 
   return (
     <>
-      <TaskBannerComponent userName={userName} taskItems={taskItems} />
-      <Container>
-        <TaskCreatorComponent callback={createNewTask} />
-        <TableContainer>
-          <Table aria-label="simple table">
-            <TableHead>
-              <TableRow>
-                <TableCell>Description</TableCell>
-                <TableCell align="right">Done</TableCell>
-                <TableCell align="right">Delete</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>{taskTableRows(false)}</TableBody>
-          </Table>
-        </TableContainer>
-      </Container>
-      <Container>
-        <div>
-          <VisibilityControlComponent
-            description="Completed Tasks"
-            isChecked={showCompleted}
-            callback={(checked: any) => setShowCompleted(checked)}
-          />
-        </div>
-      </Container>
-      <Container>
-        {showCompleted && (
+      <ThemeProvider theme={theme}>
+        <TaskBannerComponent userName={userName} taskItems={taskItems} />
+        <Container>
+          <TaskCreatorComponent callback={createNewTask} />
           <TableContainer>
             <Table aria-label="simple table">
               <TableHead>
                 <TableRow>
                   <TableCell>Description</TableCell>
                   <TableCell align="right">Done</TableCell>
+                  <TableCell align="right">Delete</TableCell>
                 </TableRow>
               </TableHead>
-              <TableBody>{taskTableRows(true)}</TableBody>
+              <TableBody>{taskTableRows(false)}</TableBody>
             </Table>
           </TableContainer>
-        )}
-      </Container>
+        </Container>
+        <Container>
+          <div>
+            <VisibilityControlComponent
+              description="Completed Tasks"
+              isChecked={showCompleted}
+              callback={(checked: any) => setShowCompleted(checked)}
+            />
+          </div>
+        </Container>
+        <Container>
+          {showCompleted && (
+            <TableContainer>
+              <Table aria-label="simple table">
+                <TableHead>
+                  <TableRow>
+                    <TableCell>Description</TableCell>
+                    <TableCell align="right">Done</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>{taskTableRows(true)}</TableBody>
+              </Table>
+            </TableContainer>
+          )}
+        </Container>
+      </ThemeProvider>
     </>
   );
 }

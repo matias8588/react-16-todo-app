@@ -19,7 +19,7 @@ export const TaskRowComponent = (props: any) => (
         />
       </TableCell>
       <TableCell align="right">
-        <IconButton aria-label="delete" color="primary">
+        <IconButton aria-label="delete" color="secondary">
           <DeleteIcon />
         </IconButton>
       </TableCell>
