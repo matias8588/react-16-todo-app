@@ -10,6 +10,7 @@ import {
   TableRow,
   TableCell,
   TableBody,
+  Container,
 } from "@material-ui/core";
 
 function App() {
@@ -76,20 +77,22 @@ function App() {
   return (
     <>
       <TaskBannerComponent userName={userName} taskItems={taskItems} />
-      <div>
+      <Container>
         <TaskCreatorComponent callback={createNewTask} />
-
         <TableContainer>
           <Table aria-label="simple table">
             <TableHead>
               <TableRow>
                 <TableCell>Description</TableCell>
                 <TableCell align="right">Done</TableCell>
+                <TableCell align="right">Delete</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>{taskTableRows(false)}</TableBody>
           </Table>
         </TableContainer>
+      </Container>
+      <Container>
         <div>
           <VisibilityControlComponent
             description="Completed Tasks"
@@ -97,6 +100,8 @@ function App() {
             callback={(checked: any) => setShowCompleted(checked)}
           />
         </div>
+      </Container>
+      <Container>
         {showCompleted && (
           <TableContainer>
             <Table aria-label="simple table">
@@ -110,7 +115,7 @@ function App() {
             </Table>
           </TableContainer>
         )}
-      </div>
+      </Container>
     </>
   );
 }
