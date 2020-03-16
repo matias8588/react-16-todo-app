@@ -11,10 +11,21 @@ import {
   TableCell,
   TableBody,
   Container,
-  createMuiTheme,
   ThemeProvider,
+  makeStyles,
+  Theme,
+  createStyles,
 } from "@material-ui/core";
 import theme from "./ui/theme/index";
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      paddingTop: 40,
+      paddingBottom: 40,
+    },
+  }),
+);
 
 function App() {
   const [userName, setUserName] = useState("Mati");
@@ -70,18 +81,6 @@ function App() {
     );
   };
 
-  const taskTableRows = (doneValue: any) =>
-    taskItems
-      .filter(task => task.done === doneValue)
-      .map(task => (
-        <TaskRowComponent
-          key={task.name}
-          task={task}
-          toggleTask={toggleTask}
-          deleteTask={deleteTask}
-        />
-      ));
-
   const deleteTask = (task: any) => {
     let removeIndex = taskItems
       .map(function(task) {
@@ -96,13 +95,26 @@ function App() {
     setTaskItems(filteredItems);
   };
 
+  const taskTableRows = (doneValue: any) =>
+    taskItems
+      .filter(task => task.done === doneValue)
+      .map(task => (
+        <TaskRowComponent
+          key={task.name}
+          task={task}
+          toggleTask={toggleTask}
+          deleteTask={deleteTask}
+        />
+      ));
+
+  const classes = useStyles();
   return (
     <>
       <ThemeProvider theme={theme}>
         <TaskBannerComponent userName={userName} taskItems={taskItems} />
         <Container>
           <TaskCreatorComponent callback={createNewTask} />
-          <TableContainer>
+          <TableContainer className={classes.root}>
             <Table aria-label="simple table">
               <TableHead>
                 <TableRow>
@@ -126,12 +138,13 @@ function App() {
         </Container>
         <Container>
           {showCompleted && (
-            <TableContainer>
+            <TableContainer className={classes.root}>
               <Table aria-label="simple table">
                 <TableHead>
                   <TableRow>
                     <TableCell>Description</TableCell>
                     <TableCell align="right">Done</TableCell>
+                    <TableCell align="right">Delete</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>{taskTableRows(true)}</TableBody>

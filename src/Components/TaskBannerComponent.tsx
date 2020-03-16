@@ -14,6 +14,7 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       flexGrow: 1,
+      paddingBottom: 40,
     },
     menuButton: {
       marginRight: theme.spacing(2),
@@ -28,7 +29,7 @@ export const TaskBannerComponent = (props: any) => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <AppBar position="static" className="app-bar" color="primary">
+      <AppBar position="static" color="primary">
         <Toolbar>
           <IconButton
             edge="start"
@@ -45,9 +46,5 @@ export const TaskBannerComponent = (props: any) => {
         </Toolbar>
       </AppBar>
     </div>
-    // <h4>
-    //   {props.userName}'s Tasks App (
-    //   {props.taskItems.filter((t: any) => !t.done).length} tasks to do)
-    // </h4>
   );
 };
