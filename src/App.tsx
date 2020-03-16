@@ -83,23 +83,13 @@ function App() {
           <Table aria-label="simple table">
             <TableHead>
               <TableRow>
-                <TableCell>Tasks</TableCell>
+                <TableCell>Description</TableCell>
                 <TableCell align="right">Done</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>{taskTableRows(false)}</TableBody>
           </Table>
         </TableContainer>
-
-        <table>
-          <thead>
-            <tr>
-              <th>Description</th>
-              <th>Done</th>
-            </tr>
-          </thead>
-          <tbody>{taskTableRows(false)}</tbody>
-        </table>
         <div>
           <VisibilityControlComponent
             description="Completed Tasks"
@@ -108,15 +98,17 @@ function App() {
           />
         </div>
         {showCompleted && (
-          <table>
-            <thead>
-              <tr>
-                <th>Description</th>
-                <th>Done</th>
-              </tr>
-            </thead>
-            <tbody>{taskTableRows(true)}</tbody>
-          </table>
+          <TableContainer>
+            <Table aria-label="simple table">
+              <TableHead>
+                <TableRow>
+                  <TableCell>Description</TableCell>
+                  <TableCell align="right">Done</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>{taskTableRows(true)}</TableBody>
+            </Table>
+          </TableContainer>
         )}
       </div>
     </>
