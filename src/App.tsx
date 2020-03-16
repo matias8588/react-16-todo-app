@@ -74,8 +74,27 @@ function App() {
     taskItems
       .filter(task => task.done === doneValue)
       .map(task => (
-        <TaskRowComponent key={task.name} task={task} toggleTask={toggleTask} />
+        <TaskRowComponent
+          key={task.name}
+          task={task}
+          toggleTask={toggleTask}
+          deleteTask={deleteTask}
+        />
       ));
+
+  const deleteTask = (task: any) => {
+    let removeIndex = taskItems
+      .map(function(task) {
+        return task.name;
+      })
+      .indexOf(task.name);
+
+    let filteredItems = taskItems
+      .slice(0, removeIndex)
+      .concat(taskItems.slice(removeIndex + 1, taskItems.length));
+
+    setTaskItems(filteredItems);
+  };
 
   return (
     <>
