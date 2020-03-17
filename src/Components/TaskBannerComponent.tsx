@@ -2,13 +2,11 @@ import React from "react";
 import {
   AppBar,
   Toolbar,
-  IconButton,
   Typography,
   makeStyles,
   Theme,
   createStyles,
 } from "@material-ui/core";
-import MenuIcon from "@material-ui/icons/Menu";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
