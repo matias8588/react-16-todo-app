@@ -6,6 +6,7 @@
     "yarn": "1.22.0",
     "node": "12.14.1"
   },
+  "homepage": "http://matias8588.github.io/react-16-todo-app",
   "dependencies": {
     "@material-ui/core": "^4.9.5",
     "@material-ui/icons": "^4.9.1",
@@ -21,6 +22,7 @@
     "eslint-config-prettier": "^6.10.0",
     "eslint-plugin-prettier": "^3.1.2",
     "express": "^4.17.1",
+    "gh-pages": "^2.2.0",
     "husky": "^4.2.2",
     "mongoose": "^5.9.1",
     "node-sass": "^4.13.1",
@@ -36,13 +38,14 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "yarn run lint-fix && yarn run format && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint src/**/*.tsx",
     "lint-fix": "eslint --fix src/**/*.tsx",
     "format": "prettier --write \"**/*.+(js|jsx|json|yml|yaml|css|md|vue)\"",
-    "heroku-start": "node server/server.js"
+    "predeploy": "yarn run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"

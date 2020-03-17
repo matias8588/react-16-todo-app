@@ -35,18 +35,22 @@ function App() {
   const [taskItems, setTaskItems] = useState([
     {
       name: "Task one",
+      edit: false,
       done: false,
     },
     {
       name: "Task two",
+      edit: false,
       done: false,
     },
     {
       name: "Task three",
+      edit: false,
       done: true,
     },
     {
       name: "Task false",
+      edit: false,
       done: false,
     },
   ]);
@@ -59,10 +63,10 @@ function App() {
     } else {
       setUserName("Mati");
       setTaskItems([
-        { name: "Task One", done: false },
-        { name: "Task Two", done: false },
-        { name: "Task Three", done: true },
-        { name: "Task Four", done: false },
+        { name: "Task One", edit: false, done: false },
+        { name: "Task Two", edit: false, done: false },
+        { name: "Task Three", edit: false, done: true },
+        { name: "Task Four", edit: false, done: false },
       ]);
       setShowCompleted(true);
     }
@@ -74,7 +78,10 @@ function App() {
 
   const createNewTask = (taskName: any) => {
     if (!taskItems.find(t => t.name === taskName)) {
-      setTaskItems([...taskItems, { name: taskName, done: false }]);
+      setTaskItems([
+        ...taskItems,
+        { name: taskName, edit: false, done: false },
+      ]);
     }
   };
 
@@ -128,6 +135,9 @@ function App() {
                     Done
                   </TableCell>
                   <TableCell className={classes.boldText} align="right">
+                    Edit
+                  </TableCell>
+                  <TableCell className={classes.boldText} align="right">
                     Delete
                   </TableCell>
                 </TableRow>
@@ -156,6 +166,9 @@ function App() {
                     </TableCell>
                     <TableCell className={classes.boldText} align="right">
                       Done
+                    </TableCell>
+                    <TableCell className={classes.boldText} align="right">
+                      Edit
                     </TableCell>
                     <TableCell className={classes.boldText} align="right">
                       Delete

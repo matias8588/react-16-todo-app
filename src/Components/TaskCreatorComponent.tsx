@@ -50,7 +50,6 @@ export const TaskCreatorComponent = (props: any) => {
       >
         Add
       </Button>
-      {/* <button onClick={createNewTask}>Add</button> */}
     </div>
   );
 };
