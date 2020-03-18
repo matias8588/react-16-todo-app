@@ -31,7 +31,6 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 function App() {
-  const [userName, setUserName] = useState("Mati");
   const [taskItems, setTaskItems] = useState([
     {
       name: "Task one",
@@ -61,7 +60,6 @@ function App() {
     if (data != null) {
       setTaskItems(JSON.parse(data));
     } else {
-      setUserName("Mati");
       setTaskItems([
         { name: "Task One", edit: false, done: false },
         { name: "Task Two", edit: false, done: false },
@@ -83,6 +81,14 @@ function App() {
         { name: taskName, edit: false, done: false },
       ]);
     }
+  };
+
+  const updateTask = (taskName: any, actualTask: any) => {
+    setTaskItems(
+      taskItems.map(t =>
+        t.name === actualTask ? { ...t, name: taskName } : t,
+      ),
+    );
   };
 
   const toggleTask = (task: any) => {
@@ -114,6 +120,7 @@ function App() {
           task={task}
           toggleTask={toggleTask}
           deleteTask={deleteTask}
+          updateCallback={updateTask}
         />
       ));
 
@@ -121,7 +128,7 @@ function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <TaskBannerComponent userName={userName} taskItems={taskItems} />
+        <TaskBannerComponent taskItems={taskItems} />
         <Container>
           <TaskCreatorComponent callback={createNewTask} />
           <TableContainer className={classes.root}>

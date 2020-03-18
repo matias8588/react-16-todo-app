@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { TableRow, TableCell, Checkbox, IconButton } from "@material-ui/core";
+import {
+  TableRow,
+  TableCell,
+  Checkbox,
+  IconButton,
+  TextField,
+  Button,
+} from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
 import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
@@ -20,12 +27,28 @@ const useStyles = makeStyles((theme: Theme) =>
       boxShadow: theme.shadows[5],
       padding: theme.spacing(2, 4, 3),
     },
+    root: {
+      flexGrow: 1,
+      paddingTop: 20,
+      paddingBottom: 40,
+      display: "flex",
+    },
+    button: { marginLeft: 50 },
   }),
 );
 
 export const TaskRowComponent = (props: any) => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
+  const [updateTaskName, setUpdateTaskName] = useState("");
+
+  const updateTaskValue = (e: any) => setUpdateTaskName(e.target.value);
+
+  const updateTask = () => {
+    props.updateCallback(updateTaskName, props.task.name);
+    setUpdateTaskName("");
+    handleClose();
+  };
 
   const handleOpen = () => {
     setOpen(true);
@@ -81,10 +104,24 @@ export const TaskRowComponent = (props: any) => {
       >
         <Fade in={open}>
           <div className={classes.paper}>
-            <h2 id="transition-modal-title">Transition modal</h2>
-            <p id="transition-modal-description">
-              react-transition-group animates me.
-            </p>
+            <div className={classes.root}>
+              <TextField
+                id="standard-basic"
+                label={"Edit: " + props.task.name}
+                type="text"
+                value={updateTaskName}
+                onChange={updateTaskValue}
+              />
+              <Button
+                variant="contained"
+                onClick={updateTask}
+                className={classes.button}
+                color="default"
+                startIcon={<EditIcon />}
+              >
+                Edit
+              </Button>
+            </div>
           </div>
         </Fade>
       </Modal>
